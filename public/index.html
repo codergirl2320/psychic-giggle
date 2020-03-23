@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="RecipeApp">
+  <head>
+    <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+    <script src="/js/app.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <title></title>
+  </head>
+  <body ng-controller="MainController as ctrl">
+    <h1> Favorite Recipes </h1>
+
+    <ul>
+      <li ng-repeat="rcpe in ctrl.recipes">
+      <a href="{{rcpe.url}}">{{rcpe.title}}</a>
+      </li>
+    </ul>
+
+    <form ng-submit="ctrl.createRecipe()">
+      <input type="text" ng-model="ctrl.title" placeholder="recipe name"/><br/>
+      <input type="text" ng-model="ctrl.url" placeholder="url"/><br/>
+      <input type="submit" value="Create New Recipe">
+    </form>
+
+
+  </body>
+</html>
