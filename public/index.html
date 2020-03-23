@@ -12,17 +12,19 @@
   <body ng-controller="MainController as ctrl">
     <h1> Favorite Recipes </h1>
 
+    <input type="text" ng-model="searchBox" placeholder="search">
+
     <ul>
-      <li ng-repeat="rcpe in ctrl.recipes">
-      <a href="{{rcpe.url}}">{{rcpe.title}}</a>
+      <li ng-repeat="recipe in ctrl.recipes | orderBy: 'title' | filter:searchBox">
+      <a href="{{recipe.url}}">{{recipe.title}}</a>
 
-      <button ng-click="ctrl.deleteRecipe(rcpe)">DELETE</button>
+      <button ng-click="ctrl.deleteRecipe(recipe)">DELETE</button>
 
-      <a ng-if="$index !== ctrl.indexOfEditFormToShow" ng-click="ctrl.indexOfEditFormToShow = $index; ctrl.updatedTitle = rcpe.updatedTitle; ctrl.updatedUrl = rcpe.updatedUrl" href="#">edit</a>
+      <a ng-if="$index !== ctrl.indexOfEditFormToShow" ng-click="ctrl.indexOfEditFormToShow = $index; ctrl.updatedTitle = recipe.updatedTitle; ctrl.updatedUrl = recipe.updatedUrl" href="#">edit</a>
 
-      <form ng-if="$index === ctrl.indexOfEditFormToShow" ng-submit="ctrl.editRecipe(rcpe)">
-        <input type="text" ng-model="ctrl.updatedTitle" placeholder="{{rcpe.title}}"/><br/>
-        <input type="text" ng-model="ctrl.updatedUrl" placeholder="{{rcpe.url}}"/><br/>
+      <form ng-if="$index === ctrl.indexOfEditFormToShow" ng-submit="ctrl.editRecipe(recipe)">
+        <input type="text" ng-model="ctrl.updatedTitle" placeholder="{{recipe.title}}"/><br/>
+        <input type="text" ng-model="ctrl.updatedUrl" placeholder="{{recipe.url}}"/><br/>
         <input type="submit" value="Update">
       </form>
 
