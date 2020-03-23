@@ -1,0 +1,23 @@
+{
+  "name": "psychic-giggle",
+  "version": "1.0.0",
+  "description": "partner project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codergirl2320/psychic-giggle.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/codergirl2320/psychic-giggle/issues"
+  },
+  "homepage": "https://github.com/codergirl2320/psychic-giggle#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
