@@ -15,6 +15,17 @@
     <ul>
       <li ng-repeat="rcpe in ctrl.recipes">
       <a href="{{rcpe.url}}">{{rcpe.title}}</a>
+
+      <button ng-click="ctrl.deleteRecipe(rcpe)">DELETE</button>
+
+      <a ng-if="$index !== ctrl.indexOfEditFormToShow" ng-click="ctrl.indexOfEditFormToShow = $index; ctrl.updatedTitle = rcpe.updatedTitle; ctrl.updatedUrl = rcpe.updatedUrl" href="#">edit</a>
+
+      <form ng-if="$index === ctrl.indexOfEditFormToShow" ng-submit="ctrl.editRecipe(rcpe)">
+        <input type="text" ng-model="ctrl.updatedTitle" placeholder="{{rcpe.title}}"/><br/>
+        <input type="text" ng-model="ctrl.updatedUrl" placeholder="{{rcpe.url}}"/><br/>
+        <input type="submit" value="Update">
+      </form>
+
       </li>
     </ul>
 
