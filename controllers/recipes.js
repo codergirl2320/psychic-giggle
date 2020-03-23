@@ -20,7 +20,7 @@ router.delete('/:id',(req,res)=>{
 	})
 })
 router.put('/:id',(req,res)=>{
-	Recipes.findByIdAndUpdate(req.params.id,(err,updated)=>{
+	Recipes.findByIdAndUpdate(req.params.id,req.body,{new:true},(err,updated)=>{
 		res.json(updated);
 	})
 })
