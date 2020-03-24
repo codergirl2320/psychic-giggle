@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="RecipeApp">
+  <head>
+    <meta charset="utf-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+    <script src="/js/app.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <title></title>
+  </head>
+  <body ng-controller="MainController as ctrl">
+    <header>
+      <img src="https://rs.projects-abroad.net/v1/hero/indian-cuisine-south-africa-food-tours-product-5e146c7a97eb2.[1600].jpeg"/>
+    </header>
+    <h2> Favorite Recipes </h2>
+
+    <input id="field" id="form" type="text" ng-model="searchBox" placeholder="search">
+
+    <ul>
+      <li ng-repeat="recipe in ctrl.recipes | orderBy: 'title' | filter:searchBox">
+        <a href="{{recipe.url}}">{{recipe.title}}</a>
+
+        <button ng-click="ctrl.deleteRecipe(recipe)">DELETE</button>
+
+        <a id="link" ng-if="$index !== ctrl.indexOfEditFormToShow" ng-click="ctrl.indexOfEditFormToShow = $index; ctrl.updatedTitle = recipe.updatedTitle; ctrl.updatedUrl = recipe.updatedUrl" href="#">edit</a>
+
+        <form ng-if="$index === ctrl.indexOfEditFormToShow" ng-submit="ctrl.editRecipe(recipe)">
+          <input id="field" type="text" ng-model="ctrl.updatedTitle" placeholder="{{recipe.title}}"/><br/>
+          <input id="field" type="text" ng-model="ctrl.updatedUrl" placeholder="{{recipe.url}}"/><br/>
+          <input id="create-button" type="submit" value="Update">
+        </form>
+      </li>
+    </ul>
+
+    <form id="create" ng-submit="ctrl.createRecipe()">
+      <input id="field" type="text" ng-model="ctrl.title" placeholder="recipe name"/><br/>
+      <input id="field" type="text" ng-model="ctrl.url" placeholder="url"/><br/>
+      <input id="create-button" type="submit" value="Create New Recipe">
+    </form>
+
+  </body>
+</html>
