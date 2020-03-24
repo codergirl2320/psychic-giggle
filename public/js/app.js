@@ -45,19 +45,18 @@ app.controller('MainController', ['$http', function($http){
     )
   }
 
-  this.deleteRecipe = (id) => {
+  this.deleteRecipe = function(recipe){
     $http({
       method: 'DELETE',
-      url: `/recipes/${id}`,
-    }).then ((response) => {
-      console.log(response.data)
-      const removeByIndex = controller.recipes.findIndex((recipe) => {
-        recipe._id === id
-      })
-        controller.recipes.splice(removeByIndex, 1)
-      }, (error) => {
-        console.log(error)
-    })
+      url: '/recipes/' + recipe._id
+    }).then(
+      function(){
+        controller.getRecipes()
+      },
+      function(error){
+
+      }
+    )
   }
 
   this.getRecipes = function(){
